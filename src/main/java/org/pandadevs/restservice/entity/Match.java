@@ -3,7 +3,6 @@ package org.pandadevs.restservice.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="matches")
 public class Match {
 
     @Id
