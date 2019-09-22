@@ -1,16 +1,16 @@
 package org.pandadevs.restservice.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="matches")
 public class Match {
 
     @Id
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String matchID;
+
     private String team1;
     private String team2;
     private int team1Score;

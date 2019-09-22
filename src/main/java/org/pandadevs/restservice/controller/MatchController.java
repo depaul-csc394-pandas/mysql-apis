@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/match")
+@RequestMapping(path = "/api/matches")
 public class MatchController {
 
     @Autowired
