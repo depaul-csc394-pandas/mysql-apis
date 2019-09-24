@@ -30,7 +30,7 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @GetMapping(path = "/",
+    @GetMapping(path = "/match",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity getMatches() {
@@ -56,7 +56,7 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @DeleteMapping(path = "/matchID",
+    @DeleteMapping(path = "/delete",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity deleteMatch(@RequestParam("matchID") String matchID) {
@@ -65,11 +65,11 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @PutMapping(path = "/{matchID}",
+    @PutMapping(path = "/update",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity putMatch(
-            @PathVariable("matchID") String matchID,
+            @RequestParam("matchID") String matchID,
             @RequestParam("team1") String team1,
             @RequestParam("team2") String team2,
             @RequestParam("team1score") String team1score,
