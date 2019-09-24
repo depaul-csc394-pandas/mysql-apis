@@ -13,8 +13,8 @@ public class Match {
 
     private String team1;
     private String team2;
-    private int team1Score;
-    private int team2Score;
+    private String team1Score;
+    private String team2Score;
 
     public String getMatchID() { return matchID; }
 
@@ -34,19 +34,19 @@ public class Match {
         this.team2 = team2;
     }
 
-    public int getTeam1Score() {
+    public String getTeam1Score() {
         return team1Score;
     }
 
-    public void setTeam1Score(int team1Score) {
+    public void setTeam1Score(String team1Score) {
         this.team1Score = team1Score;
     }
 
-    public int getTeam2Score() {
+    public String getTeam2Score() {
         return team2Score;
     }
 
-    public void setTeam2Score(int team2Score) {
+    public void setTeam2Score(String team2Score) {
         this.team2Score = team2Score;
     }
 
