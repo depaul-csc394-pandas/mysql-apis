@@ -21,7 +21,7 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @GetMapping(path = "/",
+    @GetMapping(path = "/match",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity getMatch(@RequestParam("matchID") String matchID) {
@@ -30,7 +30,7 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @GetMapping(path = "/match",
+    @GetMapping(path = "/",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity getMatches() {
