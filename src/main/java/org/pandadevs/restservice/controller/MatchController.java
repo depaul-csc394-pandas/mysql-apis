@@ -38,7 +38,7 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @PostMapping(path = "/new",
+    @GetMapping(path = "/new",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity postMatch(
