@@ -55,7 +55,6 @@ public class MatchController {
         return new ResponseEntity<>(repository.save(match), HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
     @GetMapping(path = "/delete",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
@@ -64,7 +63,6 @@ public class MatchController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
     @GetMapping(path = "/update",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
