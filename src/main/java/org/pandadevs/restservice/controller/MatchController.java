@@ -1,6 +1,5 @@
 package org.pandadevs.restservice.controller;
 
-import javassist.tools.web.BadHttpRequest;
 import org.pandadevs.restservice.entity.Match;
 import org.pandadevs.restservice.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping(value = "/api/matches")
 public class MatchController {
@@ -15,13 +15,8 @@ public class MatchController {
     @Autowired
     private MatchRepository repository;
 
-    @GetMapping
-    public Iterable<Match> findAll() {
-        return repository.findAll();
-    }
-
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @GetMapping(path = "/match",
+    @GetMapping(path = "/",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity getMatch(@RequestParam("matchID") String matchID) {
@@ -38,7 +33,7 @@ public class MatchController {
     }
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @GetMapping(path = "/new",
+    @PostMapping(path = "/post",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity postMatch(
@@ -47,15 +42,12 @@ public class MatchController {
             @RequestParam("team1score") String team1score,
             @RequestParam("team2score") String team2score
     ) {
-        Match match = new Match();
-        match.setTeam1(team1);
-        match.setTeam2(team2);
-        match.setTeam1Score(team1score);
-        match.setTeam2Score(team2score);
+        Match match = setMatchData(team1, team2, team1score, team2score);
         return new ResponseEntity<>(repository.save(match), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/delete",
+    @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
+    @DeleteMapping(path = "/delete",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity deleteMatch(@RequestParam("matchID") String matchID) {
@@ -63,7 +55,8 @@ public class MatchController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(path = "/update",
+    @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
+    @PutMapping(path = "/update",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity putMatch(
@@ -73,12 +66,7 @@ public class MatchController {
             @RequestParam("team1score") String team1score,
             @RequestParam("team2score") String team2score
     ) {
-        Match match = new Match();
-        match.setTeam1(team1);
-        match.setTeam2(team2);
-        match.setTeam1Score(team1score);
-        match.setTeam2Score(team2score);
-
+        Match match = setMatchData(team1, team2, team1score, team2score);
         if (repository.exists(matchID)) {
             match.setMatchID(matchID);
             return new ResponseEntity<>(repository.save(match), HttpStatus.OK);
@@ -87,31 +75,12 @@ public class MatchController {
         }
     }
 
-    /*
-
-    @DeleteMapping(path = "/{matchID}")
-    public void delete(@PathVariable("matchID") String matchID) {
-        repository.delete(matchID);
+    private Match setMatchData(String team1, String team2, String team1score, String team2score) {
+        Match match = new Match();
+        match.setTeam1(team1);
+        match.setTeam2(team2);
+        match.setTeam1Score(team1score);
+        match.setTeam2Score(team2score);
+        return match;
     }
-
-    @GetMapping(value = "/{matchID}", consumes = {"application/x-www-form-urlencoded"})
-     public Match find(@PathVariable("matchID") String matchID) {
-         return repository.findOne(matchID);
-     }
-
-    @PostMapping(consumes = "application/json")
-    public Match create(@RequestBody Match match) {
-        return repository.save(match);
-    }
-
-    @PutMapping(path = "/{matchID}")
-    public Match update(@PathVariable("matchID") String matchID, @RequestBody Match match) throws BadHttpRequest {
-        if (repository.exists(matchID)) {
-            match.setMatchID(matchID);
-            return repository.save(match);
-        } else {
-            throw new BadHttpRequest();
-        }
-    }
-*/
 }
