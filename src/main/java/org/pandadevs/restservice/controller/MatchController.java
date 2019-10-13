@@ -16,7 +16,7 @@ public class MatchController {
     private MatchRepository repository;
 
     @CrossOrigin(origins = {"*"}, allowedHeaders = {"*"})
-    @GetMapping(path = "/",
+    @GetMapping(path = "/get",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity getMatch(@RequestParam("matchID") String matchID) {
